@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { SwalCenter } from "@/utils/swal";
 import "@/assets/css/Home.css";
 
 // Agenda type definition
@@ -64,6 +65,29 @@ function Home() {
 
   }, [router]);
 
+  const handleLogout = async () => {
+    const result = await SwalCenter.fire({
+      title: "Keluar dari Akun?",
+      text: "Anda harus login kembali untuk mengakses data Anda.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Ya, Keluar!",
+      cancelButtonText: "Batal",
+      reverseButtons: true
+    });
+
+    if (result.isConfirmed) {
+      try {
+        await fetch("/api/logout", { method: "POST" });
+      } catch (err) {
+        console.error("Logout API failed", err);
+      }
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      router.replace("/");
+    }
+  };
+
   const [greeting, setGreeting] = useState("Selamat Datang");
   const [todayFormatted, setTodayFormatted] = useState("");
 
@@ -122,6 +146,15 @@ function Home() {
             height={36}
           />
           <h1 className="home-header-title">Presenda</h1>
+        </div>
+
+        <div className="home-header-actions">
+          <button className="home-btn-logout" onClick={handleLogout}>
+            <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+            </svg>
+            Keluar
+          </button>
         </div>
       </header>
 
