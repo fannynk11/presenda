@@ -1,0 +1,616 @@
+/* ============================================
+   PRESENDA PRESENSI PAGE STYLES
+   Mobile-First — Public Attendance Form
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+#root:has(.presensi-page) {
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Page Base ---------- */
+.presensi-page {
+  min-height: 100vh;
+  width: 100%;
+  background: #f0f4f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   HEADER BANNER
+   ============================================ */
+.presensi-banner {
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 50%, #388e3c 100%);
+  padding: 24px 20px 36px;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.presensi-banner::after {
+  content: '';
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  top: -100px;
+  right: -60px;
+  pointer-events: none;
+}
+
+.presensi-banner-brand {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 12px;
+}
+
+.presensi-banner-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px;
+  line-height: 1.3;
+}
+
+.presensi-banner-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.presensi-banner-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.presensi-banner-row svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+.presensi-content {
+  flex: 1;
+  padding: 0 16px;
+  margin-top: -16px;
+  padding-bottom: 40px;
+}
+
+.presensi-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  animation: cardFadeUp 0.5s ease both;
+}
+
+@keyframes cardFadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   FORM ELEMENTS
+   ============================================ */
+.presensi-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.presensi-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.presensi-form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  letter-spacing: 0.2px;
+}
+
+.presensi-form-label span {
+  color: #e53935;
+}
+
+.presensi-select {
+  width: 100%;
+  padding: 12px 14px;
+  padding-right: 40px;
+  background: #f8f9fa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 12px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.presensi-select:focus {
+  border-color: #2e7d32;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.presensi-manual-wrapper {
+  background: #f1f8f1;
+  border: 1.5px dashed #81c784;
+  border-radius: 14px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: cardFadeUp 0.4s ease both;
+}
+
+.presensi-manual-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2e7d32;
+  margin-bottom: 4px;
+}
+
+.presensi-manual-header svg {
+  width: 18px;
+  height: 18px;
+}
+
+.presensi-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.presensi-input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.presensi-user-info {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.presensi-user-info-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.presensi-user-info-jabatan {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ============================================
+   RADIO: HADIR / IZIN
+   ============================================ */
+.presensi-radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.presensi-radio-option {
+  position: relative;
+}
+
+.presensi-radio-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.presensi-radio-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 12px;
+  background: #f8f9fa;
+  border: 2px solid #e0e0e0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+
+.presensi-radio-label:hover {
+  border-color: #bdbdbd;
+}
+
+.presensi-radio-option input[type="radio"]:checked + .presensi-radio-label--hadir {
+  border-color: #2e7d32;
+  background: #e8f5e9;
+}
+
+.presensi-radio-option input[type="radio"]:checked + .presensi-radio-label--izin {
+  border-color: #e65100;
+  background: #fff3e0;
+}
+
+.presensi-radio-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.presensi-radio-label--hadir .presensi-radio-icon {
+  background: #c8e6c9;
+  color: #2e7d32;
+}
+
+.presensi-radio-label--izin .presensi-radio-icon {
+  background: #ffe0b2;
+  color: #e65100;
+}
+
+.presensi-radio-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.presensi-radio-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+/* ============================================
+   SIGNATURE CANVAS
+   ============================================ */
+.presensi-signature-section {
+  animation: cardFadeUp 0.3s ease both;
+}
+
+.presensi-signature-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.presensi-signature-canvas-wrapper {
+  position: relative;
+  border: 2px dashed #c8e6c9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fafffe;
+  touch-action: none;
+}
+
+.presensi-signature-canvas {
+  display: block;
+  width: 100%;
+  height: 200px;
+  cursor: crosshair;
+}
+
+.presensi-signature-placeholder {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  color: #aaa;
+  pointer-events: none;
+  text-align: center;
+}
+
+.presensi-signature-placeholder svg {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 4px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.presensi-btn-clear {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  background: none;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.presensi-btn-clear:hover {
+  background: #f5f5f5;
+  border-color: #bdbdbd;
+}
+
+.presensi-btn-clear svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ============================================
+   TEXTAREA
+   ============================================ */
+.presensi-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  background: #f8f9fa;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  outline: none;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  min-height: 100px;
+  resize: vertical;
+}
+
+.presensi-textarea:focus {
+  border-color: #2e7d32;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+}
+
+.presensi-textarea::placeholder {
+  color: #aaa;
+}
+
+/* ============================================
+   SUBMIT BUTTON
+   ============================================ */
+.presensi-btn-submit {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  color: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(27, 94, 32, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.presensi-btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(27, 94, 32, 0.4);
+}
+
+.presensi-btn-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.presensi-spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ============================================
+   ERROR & SUCCESS MESSAGES
+   ============================================ */
+.presensi-error {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  background: rgba(244, 67, 54, 0.08);
+  border: 1px solid rgba(244, 67, 54, 0.2);
+  border-radius: 10px;
+  color: #c62828;
+  font-size: 13px;
+  animation: cardFadeUp 0.3s ease;
+}
+
+.presensi-error svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* Success Page */
+.presensi-success {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.presensi-success-icon {
+  width: 72px;
+  height: 72px;
+  background: #e8f5e9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  animation: successPop 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes successPop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.presensi-success-icon svg {
+  width: 36px;
+  height: 36px;
+  color: #2e7d32;
+}
+
+.presensi-success-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+}
+
+.presensi-success-text {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Loading */
+.presensi-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+}
+
+.presensi-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #e0e0e0;
+  border-top-color: #2e7d32;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Not Found */
+.presensi-not-found {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.presensi-not-found svg {
+  width: 64px;
+  height: 64px;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.presensi-not-found h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #666;
+  margin: 0 0 8px;
+}
+
+.presensi-not-found p {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE — TABLET+
+   ============================================ */
+@media (min-width: 768px) {
+  .presensi-content {
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .presensi-banner {
+    padding: 32px 20px 44px;
+  }
+
+  .presensi-banner-title {
+    font-size: 24px;
+  }
+
+  .presensi-banner-info {
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .presensi-card {
+    padding: 32px 28px;
+  }
+
+  .presensi-signature-canvas {
+    height: 220px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .presensi-content {
+    max-width: 600px;
+  }
+
+  .presensi-banner {
+    padding: 40px 20px 52px;
+  }
+
+  .presensi-banner-title {
+    font-size: 26px;
+  }
+}

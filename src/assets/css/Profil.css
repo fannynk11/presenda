@@ -1,0 +1,165 @@
+/* ============================================
+   PROFIL.CSS - Gaya untuk halaman Profil
+   ============================================ */
+
+.profil-page {
+  min-height: 100vh;
+  background-color: #f8fafc; /* Latar abu-abu sangat muda */
+  padding-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.profil-header {
+  background: linear-gradient(135deg, #1b5e20 0%, #2e7d32 100%);
+  padding: 40px 20px 60px;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  color: white;
+  text-align: center;
+}
+
+.profil-header-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* Content */
+.profil-content {
+  padding: 0 20px;
+  margin-top: -40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Card Akun */
+.profil-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  animation: fadeUp 0.5s ease;
+}
+
+.profil-avatar {
+  width: 80px;
+  height: 80px;
+  background: #e8f5e9;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2e7d32;
+  margin-bottom: 16px;
+}
+
+.profil-avatar-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2e7d32;
+  letter-spacing: 1px;
+}
+
+.profil-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+}
+
+.profil-role {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+  margin: 0 0 16px;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* Detail List */
+.profil-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+.profil-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.profil-detail-label {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.profil-detail-value {
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+/* Logout Button */
+.profil-btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  background: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+  transition: all 0.3s;
+}
+
+.profil-btn-logout:hover {
+  background: #dc2626;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.3);
+  transform: translateY(-2px);
+}
+
+.profil-btn-logout svg {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Desktop Centering */
+@media (min-width: 768px) {
+  .profil-content {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
