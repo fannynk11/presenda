@@ -163,6 +163,40 @@
   box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
 }
 
+/* Tipe Seleksi Tabs */
+.presensi-type-tabs {
+  display: flex;
+  background: #f1f5f1;
+  padding: 4px;
+  border-radius: 12px;
+  gap: 4px;
+}
+
+.presensi-type-tab {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.presensi-type-tab--active {
+  background: #ffffff;
+  color: #1b5e20;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.presensi-type-tab:not(.presensi-type-tab--active):hover {
+  background: rgba(255, 255, 255, 0.5);
+  color: #333;
+}
+
 .presensi-manual-wrapper {
   background: #f1f8f1;
   border: 1.5px dashed #81c784;

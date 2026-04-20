@@ -43,6 +43,7 @@ function Presensi() {
   const [hasDrawn, setHasDrawn] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [selectionMode, setSelectionMode] = useState<"list" | "manual">("list");
   const [success, setSuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -182,13 +183,29 @@ function Presensi() {
     }
   };
 
+  const handleModeChange = (mode: "list" | "manual") => {
+    setSelectionMode(mode);
+    if (mode === "manual") {
+      setSelectedUserId("manual");
+      setSelectedUser(null);
+    } else {
+      setSelectedUserId("");
+      setSelectedUser(null);
+    }
+    setError("");
+  };
+
   // Submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!selectedUserId) {
+    if (selectionMode === "list" && !selectedUserId) {
       setError("Silakan pilih nama Anda");
+      return;
+    }
+    if (selectionMode === "manual" && !manualName.trim()) {
+      setError("Silakan isi nama lengkap Anda");
       return;
     }
     if (!statusHadir) {
@@ -204,7 +221,7 @@ function Presensi() {
       return;
     }
 
-    if (selectedUserId === "manual" && !manualName.trim()) {
+    if (selectionMode === "manual" && !manualName.trim()) {
       setError("Silakan isi nama Anda (wajib)");
       return;
     }
@@ -217,8 +234,8 @@ function Presensi() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id_agenda: parseInt(id!),
-          id_user: selectedUserId === "manual" ? null : parseInt(selectedUserId),
-          isManual: selectedUserId === "manual",
+          id_user: selectionMode === "manual" ? null : parseInt(selectedUserId),
+          isManual: selectionMode === "manual",
           manualName: manualName.trim(),
           manualJabatan: manualJabatan.trim(),
           status_hadir: statusHadir,
@@ -425,35 +442,60 @@ function Presensi() {
               </div>
             )}
 
-            {/* Pilih Nama */}
-            <div className="presensi-form-group">
-              <label className="presensi-form-label">
-                Pilih Nama Anda <span>*</span>
-              </label>
-              <select
-                className="presensi-select"
-                value={selectedUserId}
-                onChange={handleUserChange}
-                required
+            {/* Tab Seleksi Tipe Presensi */}
+            <div className="presensi-type-tabs">
+              <button
+                type="button"
+                className={`presensi-type-tab ${selectionMode === "list" ? "presensi-type-tab--active" : ""}`}
+                onClick={() => handleModeChange("list")}
               >
-                <option value="">-- Pilih Nama --</option>
-                {users.map((user) => (
-                  <option key={user.id_user} value={user.id_user}>
-                    {user.nama}
-                  </option>
-                ))}
-                <option value="manual">-- Lainnya (Ketik Manual) --</option>
-              </select>
+                Daftar Pegawai
+              </button>
+              <button
+                type="button"
+                className={`presensi-type-tab ${selectionMode === "manual" ? "presensi-type-tab--active" : ""}`}
+                onClick={() => handleModeChange("manual")}
+              >
+                Ketik Manual
+              </button>
             </div>
 
-            {/* Input Manual Jika Memilih Lainnya */}
-            {selectedUserId === "manual" && (
+            {/* Pilih Nama (Jika mode list) */}
+            {selectionMode === "list" && (
+              <div className="presensi-form-group" style={{ animation: "cardFadeUp 0.3s ease both" }}>
+                <label className="presensi-form-label">
+                  Pilih Nama Anda <span>*</span>
+                </label>
+                <select
+                  className="presensi-select"
+                  value={selectedUserId}
+                  onChange={handleUserChange}
+                  required
+                >
+                  <option value="">-- Pilih Nama --</option>
+                  {users.map((user) => (
+                    <option key={user.id_user} value={user.id_user}>
+                      {user.nama}
+                    </option>
+                  ))}
+                </select>
+                {selectedUser && (
+                  <div className="presensi-user-info">
+                    <span className="presensi-user-info-name">{selectedUser.nama}</span>
+                    <span className="presensi-user-info-jabatan">{selectedUser.jabatan}</span>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Input Manual (Jika mode manual) */}
+            {selectionMode === "manual" && (
               <div className="presensi-manual-wrapper">
                 <div className="presensi-manual-header">
                   <svg fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
-                  <span>Lengkapi Data Diri</span>
+                  <span>Data Tamu / Magang</span>
                 </div>
                 
                 <div className="presensi-form-group">
@@ -472,24 +514,16 @@ function Presensi() {
 
                 <div className="presensi-form-group">
                   <label className="presensi-form-label">
-                    Jabatan / Posisi
+                    Jabatan / Instansi
                   </label>
                   <input
                     type="text"
                     className="presensi-input"
-                    placeholder="Contoh: Siswa Magang"
+                    placeholder="Contoh: Siswa Magang SMK 1"
                     value={manualJabatan}
                     onChange={(e) => setManualJabatan(e.target.value)}
                   />
                 </div>
-              </div>
-            )}
-
-            {/* Tampilkan info user yang dipilih */}
-            {selectedUser && selectedUserId !== "manual" && (
-              <div className="presensi-user-info">
-                <span className="presensi-user-info-name">{selectedUser.nama}</span>
-                <span className="presensi-user-info-jabatan">{selectedUser.jabatan}</span>
               </div>
             )}
 

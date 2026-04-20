@@ -3,7 +3,7 @@
 .pegawai-page {
   min-height: 100vh;
   background-color: #f8fafc;
-  padding-bottom: 90px; /* Space for bottom nav */
+  padding-bottom: 110px; /* Space for bottom nav */
   font-family: 'Inter', sans-serif;
 }
 
@@ -97,14 +97,37 @@
 
 .pegawai-card {
   background-color: white;
-  border-radius: 18px;
-  padding: 16px;
+  border-radius: 20px;
+  padding: 18px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
   border: 1px solid #f1f5f9;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.pegawai-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, #2e7d32, #1b5e20);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.pegawai-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.pegawai-card:hover::before {
+  opacity: 1;
 }
 
 .pegawai-card:active {
@@ -133,25 +156,45 @@
 .pegawai-info {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 .pegawai-name {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   color: #1e293b;
   margin: 0;
+  line-height: 1.3;
 }
 
-.pegawai-role {
-  font-size: 13px;
-  color: #64748b;
+.pegawai-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-top: 2px;
 }
 
+.pegawai-role {
+  font-size: 11px;
+  font-weight: 600;
+  color: #2e7d32;
+  background: #f0fdf4;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #dcfce7;
+  display: inline-block;
+}
+
 .pegawai-nip {
-  font-size: 12px;
-  color: #94a3b8;
-  font-family: monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  background: #f8fafc;
+  padding: 2px 8px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  display: inline-block;
+  font-family: inherit;
 }
 
 .pegawai-actions {
@@ -187,10 +230,9 @@
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Bottom sheet on mobile */
   justify-content: center;
-  padding: 20px;
-  z-index: 1000;
+  z-index: 2000; /* Higher than bottom nav */
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -198,10 +240,10 @@
   background-color: white;
   width: 100%;
   max-width: 500px;
-  border-radius: 24px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  border-radius: 24px 24px 0 0; /* Top radius for bottom sheet */
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  animation: slideUp 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .pegawai-modal-header {
@@ -230,6 +272,7 @@
   padding: 24px;
   max-height: 70vh;
   overflow-y: auto;
+  padding-bottom: calc(40px + env(safe-area-inset-bottom, 20px)); /* Extra space for Simpan button */
 }
 
 .pegawai-form {
@@ -300,6 +343,63 @@
   border-top-color: #2e7d32;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
+}
+
+/* Tablet & Desktop Adjustments */
+@media (min-width: 768px) {
+  .pegawai-modal-overlay {
+    align-items: center;
+    padding: 20px;
+  }
+
+  .pegawai-modal {
+    border-radius: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes slideUp { 
+    from { transform: translateY(20px); opacity: 0; } 
+    to { transform: translateY(0); opacity: 1; } 
+  }
+}
+
+/* Specific Small Mobile Fixes */
+@media (max-width: 540px) {
+  .pegawai-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .pegawai-card-left {
+    width: 100%;
+  }
+
+  .pegawai-info {
+    flex: 1;
+  }
+
+  .pegawai-actions {
+    width: 100%;
+    justify-content: flex-end;
+    padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+  }
+  
+  .pegawai-btn-action {
+    flex: 1;
+    max-width: none;
+    height: 40px;
+  }
+
+  .pegawai-form-grid {
+    grid-template-columns: 1fr !important; /* Stack columns vertically */
+  }
+  
+  .pegawai-modal-body {
+    padding: 20px;
+    max-height: 80vh;
+  }
 }
 
 @keyframes spin { to { transform: rotate(360deg); } }

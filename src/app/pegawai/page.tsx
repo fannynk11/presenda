@@ -321,8 +321,10 @@ export default function PegawaiPage() {
                     <div className="pegawai-avatar">{getInitials(u.nama)}</div>
                     <div className="pegawai-info">
                       <p className="pegawai-name">{u.nama}</p>
-                      <p className="pegawai-role">{u.jabatan || 'Staf'} {u.golongan ? `• ${u.golongan}` : ''}</p>
-                      {u.nip && <p className="pegawai-nip">NIP. {u.nip}</p>}
+                      <div className="pegawai-meta">
+                        <span className="pegawai-role">{u.jabatan || 'Staf'} {u.golongan ? `• ${u.golongan}` : ''}</span>
+                        {u.nip && <span className="pegawai-nip">NIP. {u.nip}</span>}
+                      </div>
                     </div>
                   </div>
                   <div className="pegawai-actions">

@@ -20,7 +20,7 @@
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   display: flex;
   flex-direction: column;
-  padding-bottom: 80px;
+  padding-bottom: 100px;
   box-sizing: border-box;
 }
 
@@ -390,7 +390,7 @@
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
-  z-index: 200;
+  z-index: 2000; /* Higher than bottom nav */
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -462,6 +462,7 @@
 
 .agenda-modal-body {
   padding: 20px;
+  padding-bottom: calc(30px + env(safe-area-inset-bottom, 20px)); /* Extra space at bottom */
 }
 
 /* ============================================
@@ -526,6 +527,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .agenda-form-row {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
 }
 
 .agenda-form-submit {
